@@ -22,7 +22,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "AppsPanelSDK",
-            path: "./AppsPanelSDK.xcframework"
+            url: "https://github.com/aoapnl/AppsPanelSDKPackage/releases/download/5.3.2/AppsPanelSDK.xcframework.zip"
         ),
         .target(
             name: "AppsPanelSDKWrapper",
