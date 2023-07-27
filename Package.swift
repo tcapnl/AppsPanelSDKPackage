@@ -28,7 +28,7 @@ let package = Package(
             .target(
                 name: "AppsPanelSDKWrapper",
                 dependencies: [.target(name: "AppsPanelSDK"),
-                               .product(name: "Alamofire", package: "Alamofire"),
+                               "Alamofire",
                                .product(name: "KeychainAccess", package: "KeychainAccess"),
                                .product(name: "SwiftJWT", package: "Swift-JWT")],
                 path: ".",
