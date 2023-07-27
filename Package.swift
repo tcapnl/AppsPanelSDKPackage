@@ -11,7 +11,7 @@ let package = Package(
 //        ),
         .library(
             name: "AppsPanelSDK",
-            targets: ["AppsPanelSDK"]
+            targets: ["AppsPanelSDKWrapper"]
         )
     ],
     dependencies: [
@@ -20,12 +20,16 @@ let package = Package(
         .package(name: "Swift-JWT", url: "https://github.com/Kitura/Swift-JWT.git", .upToNextMinor(from: "3.6.200"))
     ],
     targets: [
-            
-            .target(
+            .binaryTarget(
                 name: "AppsPanelSDK",
-                dependencies: [
-                                "Alamofire",
-                                "KeychainAccess",
+                url: "https://github.com/aoapnl/AppsPanelSDKPackage/releases/download/5.3.2/AppsPanelSDK.xcframework.zip",
+                checksum: "5840d848a4541f46513ed7bfdffb33e7e5545afb922c3f1d486f6f19f08edf9f"
+            ),
+            .target(
+                name: "AppsPanelSDKWrapper",
+                dependencies: [.target(name: "AppsPanelSDK"),
+                               "Alamofire",
+                               .product(name: "KeychainAccess", package: "KeychainAccess"),
                                .product(name: "SwiftJWT", package: "Swift-JWT")],
                 path: ".",
                 sources: [
@@ -42,7 +46,7 @@ let package = Package(
     //        ),
             .testTarget(
                 name: "AppsPanelSDKTests",
-                dependencies: ["AppsPanelSDK"]
+                dependencies: ["AppsPanelSDKWrapper"]
             ),
         ]
 )
