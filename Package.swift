@@ -15,7 +15,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(name: "Alamofire", url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.0.0")),
+        
         .package(name: "KeychainAccess", url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.0.0"),
         .package(name: "Swift-JWT", url: "https://github.com/Kitura/Swift-JWT.git", .upToNextMinor(from: "3.6.200"))
     ],
@@ -28,7 +28,7 @@ let package = Package(
             .target(
                 name: "AppsPanelSDKWrapper",
                 dependencies: [.target(name: "AppsPanelSDK"),
-                               "Alamofire",
+                               
                                .product(name: "KeychainAccess", package: "KeychainAccess"),
                                .product(name: "SwiftJWT", package: "Swift-JWT")],
                 path: ".",
