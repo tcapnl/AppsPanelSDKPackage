@@ -20,30 +20,33 @@ let package = Package(
         .package(name: "Swift-JWT", url: "https://github.com/Kitura/Swift-JWT.git", .upToNextMinor(from: "3.6.200"))
     ],
     targets: [
-        .binaryTarget(
-            name: "AppsPanelSDK",
-            url: "https://github.com/aoapnl/AppsPanelSDKPackage/releases/download/5.3.2/AppsPanelSDK.xcframework.zip",
-            checksum: "5840d848a4541f46513ed7bfdffb33e7e5545afb922c3f1d486f6f19f08edf9f"
-        ),
-        .target(
-            name: "AppsPanelSDKWrapper",
-//            dependencies: [.target(name: "AppsPanelSDK")],
-            path: ".",
-            sources: [
-                "Sources/Test.swift"
-            ]
-        ),
-//        .target(
-//            name: "AppsPanelSDKv5",
-//            dependencies: ["AppsPanelSDK"],
-//            path: ".",
-//            sources: [
-//                "Sources/Test.swift"
-//            ]
-//        ),
-        .testTarget(
-            name: "AppsPanelSDKTests",
-            dependencies: ["AppsPanelSDKWrapper"]
-        ),
-    ]
+            .binaryTarget(
+                name: "AppsPanelSDK",
+                url: "https://github.com/aoapnl/AppsPanelSDKPackage/releases/download/5.3.2/AppsPanelSDK.xcframework.zip",
+                checksum: "5840d848a4541f46513ed7bfdffb33e7e5545afb922c3f1d486f6f19f08edf9f"
+            ),
+            .target(
+                name: "AppsPanelSDKWrapper",
+                dependencies: [.target(name: "AppsPanelSDK"),
+                               .product(name: "Alamofire", package: "Alamofire"),
+                               .product(name: "KeychainAccess", package: "KeychainAccess"),
+                               .product(name: "SwiftJWT", package: "Swift-JWT")],
+                path: ".",
+                sources: [
+                    "Sources/Test.swift"
+                ]
+            ),
+    //        .target(
+    //            name: "AppsPanelSDKv5",
+    //            dependencies: ["AppsPanelSDK"],
+    //            path: ".",
+    //            sources: [
+    //                "Sources/Test.swift"
+    //            ]
+    //        ),
+            .testTarget(
+                name: "AppsPanelSDKTests",
+                dependencies: ["AppsPanelSDKWrapper"]
+            ),
+        ]
 )
