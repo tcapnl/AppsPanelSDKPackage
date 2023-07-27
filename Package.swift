@@ -34,7 +34,10 @@ let package = Package(
                 path: ".",
                 sources: [
                     "Sources/Test.swift"
-                ]
+                ],
+                swiftSettings: [
+                        .unsafeFlags(["-target", "arm64-apple-ios11.0"]),  // Ceci spécifie la version minimum d'iOS pour ce target spécifique
+                    ]
             ),
     //        .target(
     //            name: "AppsPanelSDKv5",
